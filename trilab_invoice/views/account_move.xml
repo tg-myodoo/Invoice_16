@@ -820,15 +820,19 @@
     </xpath>
 
     <!-- bank transfer details -->
-    <p name="payment_term" position="after">
-      <t t-if="o.partner_bank_id and o.amount_residual and o.invoice_date != o.invoice_date_due"
-         name="partner_bank_id">
-        Bank Account Number: <span t-field="o.partner_bank_id.acc_number"/>
-        <span t-if="o.currency_id.name != 'PLN' and o.partner_bank_id.bank_bic">
-          &amp;bull;&amp;nbsp;BIC/SWIFT: <span t-field="o.partner_bank_id.bank_bic"/>
-        </span>
-      </t>
-    </p>
+    <!-- 15->16: added xpath in place of p name -->
+    <!-- <p name="payment_term" position="after"> -->
+    <xpath expr="//*[@name='payment_term']" position="after">
+      <p>
+        <t t-if="o.partner_bank_id and o.amount_residual and o.invoice_date != o.invoice_date_due"
+          name="partner_bank_id">
+          Bank Account Number: <span t-field="o.partner_bank_id.acc_number"/>
+          <span t-if="o.currency_id.name != 'PLN' and o.partner_bank_id.bank_bic">
+            &amp;bull;&amp;nbsp;BIC/SWIFT: <span t-field="o.partner_bank_id.bank_bic"/>
+          </span>
+        </t>
+      </p>
+    </xpath>
 
     <!-- słownie -->
     <xpath expr="//*[@name='payment_term']" position="before">

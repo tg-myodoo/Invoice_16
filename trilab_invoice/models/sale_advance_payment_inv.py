@@ -5,7 +5,9 @@ from odoo.exceptions import UserError, ValidationError
 class SaleAdvancePaymentInv(models.TransientModel):
     _inherit = 'sale.advance.payment.inv'
 
-    order_ids = fields.Many2many('sale.order', readonly=1)
+    # order_ids = fields.Many2many('sale.order', readonly=1)
+    order_ids = fields.Many2many('sale.order', 'sale_order_ref', readonly=1) # 15->16: added relation 'sale_order_ref'
+
     order_line = fields.One2many('sale.order.line', compute='compute_order_line')
     invoice_lines = fields.Many2many('sale.order.line')
     advance_lines = fields.One2many('sale.advance.line', 'wizard_id')

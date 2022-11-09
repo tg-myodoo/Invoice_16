@@ -1,6 +1,6 @@
 # noinspection PyStatementEffect
 {
-    'name': 'Trilab Invoice PL',
+    'name': 'Trilab Invoice PL new',
     'author': 'Trilab',
     'website': "https://trilab.pl",
     'version': '2.107',
