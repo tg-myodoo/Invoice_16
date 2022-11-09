@@ -647,8 +647,12 @@ class AccountMove(models.Model):
             if move._auto_compute_invoice_reference():
                 to_write = {'payment_reference': move._get_invoice_computed_reference(), 'line_ids': []}
 
+                # 15->16: 
+                # account_id.user_type_id.type -> account_id.account_type 
+                # ('receivable', 'payable') -> ('asset_receivable', 'liability_payable')
                 for line in move.line_ids.filtered(
-                    lambda l: l.account_id.user_type_id.type in ('receivable', 'payable')
+                    lambda l: l.account_id.account_type in ('asset_receivable', 'liability_payable')
+                    # lambda l: l.account_id.user_type_id.type in ('receivable', 'payable')
                 ):
                     to_write['line_ids'].append((1, line.id, {'name': to_write['payment_reference']}))
 
@@ -708,9 +712,14 @@ class AccountMove(models.Model):
             ):
                 continue
 
-            pay_term_line_ids = move.line_ids.filtered(
-                lambda _line: _line.account_id.user_type_id.type in ('receivable', 'payable')
-            )
+            # 15->16: 
+            # account_id.user_type_id.type -> account_id.account_type 
+            # ('receivable', 'payable') -> ('asset_receivable', 'liability_payable')
+            pay_term_lines = move.line_ids\
+                .filtered(lambda line: line.account_id.account_type in ('asset_receivable', 'liability_payable'))
+            # pay_term_line_ids = move.line_ids.filtered(
+            #     lambda _line: _line.account_id.user_type_id.type in ('receivable', 'payable')
+            # )        
 
             domain = [
                 ('account_id', 'in', pay_term_line_ids.mapped('account_id').ids),
@@ -1045,7 +1054,12 @@ class AccountMove(models.Model):
                     elif line.tax_line_id:
                         total += line.balance
                         total_currency += line.amount_currency
-                    elif line.account_id.user_type_id.type in ('receivable', 'payable'):
+
+                    # 15->16: 
+                    # account_id.user_type_id.type -> account_id.account_type 
+                    # ('receivable', 'payable') -> ('asset_receivable', 'liability_payable')
+                    elif line.account_id.account_type in ('asset_receivable', 'liability_payable'):
+                    # elif line.account_id.user_type_id.type in ('receivable', 'payable'):
 
                         total_residual += line.amount_residual
                         total_residual_currency += line.amount_residual_currency
