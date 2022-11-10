@@ -83,7 +83,7 @@
                                    options="{'no_create': True}"
                                    domain="[('deprecated', '=', False), ('account_type', 'not in', ('asset_receivable', 'liability_payable')), ('company_id', '=', parent.company_id), ('is_off_balance', '=', False)]"
                                    attrs="{'required': [('display_type', '=', False)]}"/>
-                            <!-- 15->16: domain="[('deprecated', '=', False), ('user_type_id.type', 'not in', ('receivable', 'payable')), ('company_id', '=', parent.company_id), ('is_off_balance', '=', False)]" -->
+                            <!-- 15->16: /\ old domain="[('deprecated', '=', False), ('user_type_id.type', 'not in', ('receivable', 'payable')), ('company_id', '=', parent.company_id), ('is_off_balance', '=', False)]" -->
                             <field name="analytic_account_id"
                                    domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
                                    groups="analytic.group_analytic_accounting"
@@ -92,7 +92,7 @@
                                    domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
                                    groups="analytic.group_analytic_tags"
                                    optional="show"
-                                   widget="many2many_tags"/>
+                                   widget="many2many_tags"/> 
                             <field name="quantity" invisible="1"/>
                             <field name="product_uom_category_id" invisible="1"/>
                             <field name="x_quantity_reverse" string="Quantity"/>
@@ -205,7 +205,7 @@
                                    options="{'no_create': True}"
                                    domain="[('deprecated', '=', False), ('account_type', 'not in', ('asset_receivable', 'liability_payable')), ('company_id', '=', parent.company_id), ('is_off_balance', '=', False)]"
                                    attrs="{'required': [('display_type', '=', False)]}"/>
-                            <!-- 15->16: domain="[('deprecated', '=', False), ('user_type_id.type', 'not in', ('receivable', 'payable')), ('company_id', '=', parent.company_id), ('is_off_balance', '=', False)]" -->
+                            <!-- 15->16: /\ old domain="[('deprecated', '=', False), ('user_type_id.type', 'not in', ('receivable', 'payable')), ('company_id', '=', parent.company_id), ('is_off_balance', '=', False)]" -->
                             <field name="analytic_account_id"
                                    domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
                                    groups="analytic.group_analytic_accounting" optional="show"/>
