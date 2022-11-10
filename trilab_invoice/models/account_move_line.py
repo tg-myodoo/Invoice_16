@@ -22,12 +22,26 @@ class AccountMoveLine(models.Model):
 
     x_move_type = fields.Selection(related='move_id.move_type', store=False)
     
+    # 15->16: restored field account_internal_type after odoo removed it
+    # 15->16: new account_id structure: account_id.user_type_id.type -> account_id.account_type
+    # ==== Business fields ====
+    account_internal_type = fields.Selection(related='account_id.account_type', string="Internal Type", readonly=True)
+    # account_internal_type = fields.Selection(related='account_id.user_type_id.type', string="Internal Type", readonly=True)
+
     # 15->16: restored fields analytic_account_id and analytic_tag_ids after odoo removed them
     # ==== Analytic fields ====
     analytic_account_id = fields.Many2one('account.analytic.account', string='Analytic Account',
         index=True, compute="_compute_analytic_account_id", store=True, readonly=False, check_company=True, copy=True)
     analytic_tag_ids = fields.Many2many('account.analytic.tag', string='Analytic Tags',
         compute="_compute_analytic_tag_ids", store=True, readonly=False, check_company=True, copy=True)
+
+    # 15->16: restored fields recompute_tax_line, is_rounding_line and exclude_from_invoice_tab after odoo removed them
+    # ==== Onchange / display purpose fields ====
+    recompute_tax_line = fields.Boolean(store=False, readonly=True,
+        help="Technical field used to know on which lines the taxes must be recomputed.")
+    is_rounding_line = fields.Boolean(help="Technical field used to retrieve the cash rounding line.")
+    exclude_from_invoice_tab = fields.Boolean(help="Technical field used to exclude some lines from the invoice_line_ids tab in the form view.")
+    
 
     # 15->16: restored method _compute_analytic_account_id after odoo removed it
     @api.depends('product_id', 'account_id', 'partner_id', 'date')
