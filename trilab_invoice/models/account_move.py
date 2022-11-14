@@ -1124,8 +1124,10 @@ class AccountMove(models.Model):
                 self.x_invoice_sale_date or self.invoice_date or self.date or fields.Date.context_today(self),
             )
             recs = self.with_context(x_trilab_force_currency_rate=self.x_currency_rate)
-            recs._onchange_recompute_dynamic_lines()
-            recs.line_ids._onchange_amount_currency()
+            # 15->16
+            # recompute functions are redundant now
+            # recs._onchange_recompute_dynamic_lines()
+            # recs.line_ids._onchange_amount_currency()
 
     def _recompute_dynamic_lines(self, recompute_all_taxes=False, recompute_tax_base_amount=False):
         if self.x_get_is_poland():
@@ -1133,6 +1135,10 @@ class AccountMove(models.Model):
                 recompute_all_taxes, recompute_tax_base_amount
             )
         return super()._recompute_dynamic_lines(recompute_all_taxes, recompute_tax_base_amount)
+        
+        # 15->16
+        # recompute functions are redundant now
+        # pass
 
     @api.depends('company_id.x_enable_invoice_rate_change', 'currency_id', 'company_currency_id')
     def _x_compute_show_currency_rate(self):

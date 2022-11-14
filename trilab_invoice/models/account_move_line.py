@@ -136,9 +136,11 @@ class AccountMoveLine(models.Model):
 
     @api.onchange("quantity", "discount", "price_unit", "tax_ids")
     def _onchange_price_subtotal(self):
-        return super(
-            AccountMoveLine, self.move_id._x_update_context_with_currency_rate(self)
-        )._onchange_price_subtotal()
+        # 15->16: recompute functions are redundant now
+        # return super(
+        #     AccountMoveLine, self.move_id._x_update_context_with_currency_rate(self)
+        # )._onchange_price_subtotal()
+        pass
 
     @api.onchange("amount_currency")
     def _onchange_amount_currency(self):

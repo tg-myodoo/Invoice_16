@@ -1,3 +1,9 @@
+v0.1.4
+====
+* models/account_move.py - recompute functions are redundant now, so were removed from x_onchange_set_currency_rate method
+* models/account_move_line.py - recompute functions are redundant now, so were removed from _onchange_price_subtotal method
+* created models/account_analytic_default.py - restored AccountAnalyticDefault model after odoo removed them
+
 v0.1.3
 ====
 * models/account_move_line.py - restored field account_internal_type after odoo removed it
