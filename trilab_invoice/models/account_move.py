@@ -702,7 +702,9 @@ class AccountMove(models.Model):
             return super()._compute_payments_widget_to_reconcile_info()
 
         for move in self:
-            move.invoice_outstanding_credits_debits_widget = json.dumps(False)
+            # 15->16: invoice_outstanding_credits_debits_widget is no longer stored in json
+            # move.invoice_outstanding_credits_debits_widget = json.dumps(False)
+            move.invoice_outstanding_credits_debits_widget = False
             move.invoice_has_outstanding = False
 
             if (
@@ -715,7 +717,7 @@ class AccountMove(models.Model):
             # 15->16: 
             # account_id.user_type_id.type -> account_id.account_type 
             # ('receivable', 'payable') -> ('asset_receivable', 'liability_payable')
-            pay_term_lines = move.line_ids\
+            pay_term_line_ids = move.line_ids\
                 .filtered(lambda line: line.account_id.account_type in ('asset_receivable', 'liability_payable'))
             # pay_term_line_ids = move.line_ids.filtered(
             #     lambda _line: _line.account_id.user_type_id.type in ('receivable', 'payable')
@@ -772,22 +774,29 @@ class AccountMove(models.Model):
 
                     if move.currency_id.is_zero(amount_to_show):
                         continue
-
+                    
+                    # 15->16: new structure of attribute invoice_outstanding_credits_debits_widget - new keys in 'content' dictionary
                     info['content'].append(
                         {
                             'journal_name': line.ref or line.move_id.name,
-                            'amount': amount_to_show,
-                            'currency': currency_id.symbol,
+                            'amount': amount_to_show,                        
+                            # 15->16: 'currency': currency_id.symbol,
+                            'currency_id': move.currency_id.id,
                             'id': line.id,
                             'move_id': line.move_id.id,  # ?
-                            'position': currency_id.position,
+                            'position': move.currency_id.position,
                             'digits': [69, move.currency_id.decimal_places],
-                            'payment_date': fields.Date.to_string(line.date),
+                            # 15->16: 'payment_date': fields.Date.to_string(line.date),
+                            'date': fields.Date.to_string(line.date),
+                            # 15->16: 
+                            'account_payment_id': line.payment_id.id,
                         }
                     )
 
                 info['title'] = type_payment
-                move.invoice_outstanding_credits_debits_widget = json.dumps(info)
+                # 15->16: invoice_outstanding_credits_debits_widget is no longer stored in json
+                # move.invoice_outstanding_credits_debits_widget = json.dumps(info)
+                move.invoice_outstanding_credits_debits_widget = info
                 move.invoice_has_outstanding = True
 
     # noinspection PyMethodMayBeStatic

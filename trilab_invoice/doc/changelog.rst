@@ -1,3 +1,8 @@
+v0.1.5
+====
+* models/account_move.py - in method _compute_payments_widget_to_reconcile_info - attribute: invoice_outstanding_credits_debits_widget is no longer stored in json
+* models/account_move.py - new structure of attribute invoice_outstanding_credits_debits_widget - new keys in 'content' dictionary
+
 v0.1.4
 ====
 * models/account_move.py - recompute functions are redundant now, so were removed from x_onchange_set_currency_rate method
