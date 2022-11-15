@@ -1,3 +1,8 @@
+v0.1.6
+====
+* views/account_move.xml - 2x renamed tax_totals_json field to tax_totals
+* models/account_move.py - 2x renamed _compute_tax_totals_json method to _compute_tax_totals
+
 v0.1.5
 ====
 * models/account_move.py - in method _compute_payments_widget_to_reconcile_info - attribute: invoice_outstanding_credits_debits_widget is no longer stored in json

@@ -392,7 +392,9 @@
           <div class="col-8 offset-4">
             <div><strong>Settlement of received advance payment according to tax rates:</strong></div>
             <table class="table table-sm table-condensed">
-              <t t-set="tax_totals" t-value="json.loads(o.tax_totals_json)"/>
+              <!-- 15->16: renamed tax_totals_json field to tax_totals -->
+              <!-- <t t-set="tax_totals" t-value="json.loads(o.tax_totals_json)"/> -->
+              <t t-set="tax_totals" t-value="o.tax_totals"/>
               <tr class="bg-200">
                 <td>
                   <strong>VAT rate</strong>
@@ -744,7 +746,9 @@
         <div class="col-4"/>
         <div class="col-8">
           <table class="table table-sm table-condensed" style="page-break-inside: avoid;">
-            <t t-set="tax_totals" t-value="json.loads(o.tax_totals_json)"/>
+            <!-- 15->16: renamed tax_totals_json field to tax_totals -->
+            <!-- <t t-set="tax_totals" t-value="json.loads(o.tax_totals_json)"/> -->
+            <t t-set="tax_totals" t-value="o.tax_totals"/>
             <tr class="border-black bg-200">
               <td class="text-left">
                 <strong>VAT rate</strong>
@@ -859,7 +863,9 @@
   <template id="report_invoice_document_with_payments" inherit_id="trilab_invoice.report_invoice_document"
             primary="True">
     <xpath expr="//div[@id='total']/div/table" position="after">
-      <t t-set="payments_vals" t-value="o._get_reconciled_info_JSON_values()"/>
+      <!-- 15->16 -->
+      <t t-set="payments_vals" t-value="o._get_reconciled_info_JSON_values()"/> 
+      <!-- <t t-set="payments_vals" t-value="o._get_reconciled_info_values()"/>-->
       <t t-foreach="payments_vals" t-as="payment_vals">
         <div style="text-align: right;">
           <span t-out="payment_vals['amount']"

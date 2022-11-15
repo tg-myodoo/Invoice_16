@@ -483,7 +483,9 @@ class AccountMove(models.Model):
                         copied.run_onchanges()
 
                 invoice.with_context(check_move_validity=False)._onchange_invoice_line_ids()
-                invoice._compute_tax_totals_json()
+                # 15->16: renamed _compute_tax_totals_json method to _compute_tax_totals
+                invoice._compute_tax_totals()
+                # invoice._compute_tax_totals_json()
 
         return invoice_ids
 
@@ -500,7 +502,9 @@ class AccountMove(models.Model):
 
                 invoice._onchange_invoice_line_ids()
                 invoice._recompute_dynamic_lines(True)
-                invoice._compute_tax_totals_json()
+                # 15->16: renamed _compute_tax_totals_json method to _compute_tax_totals
+                invoice._compute_tax_totals()
+                # invoice._compute_tax_totals_json()
 
     def correction_invoices_view(self):
         view_data = {
@@ -798,6 +802,17 @@ class AccountMove(models.Model):
                 # move.invoice_outstanding_credits_debits_widget = json.dumps(info)
                 move.invoice_outstanding_credits_debits_widget = info
                 move.invoice_has_outstanding = True
+
+    # 15->16: created new method to replace old _get_reconciled_info_JSON_values
+    # def _get_reconciled_info_values(self):
+    #     self.ensure_one()
+    #     payments_widget_vals = self.invoice_payments_widget['content']
+    #     if payments_widget_vals:
+    #         reconciled_vals = payments_widget_vals
+    #     else:
+    #         reconciled_vals = False
+
+    #     return reconciled_vals
 
     # noinspection PyMethodMayBeStatic
     def _format_float(self, number, currency, env):
