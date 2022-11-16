@@ -9,3 +9,4 @@ from . import sale_order_line
 
 from . import analytic_account
 from . import account_analytic_default
+from . import account_tax

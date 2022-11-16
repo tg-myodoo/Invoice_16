@@ -158,6 +158,7 @@ class AccountMove(models.Model):
 
         return tax_lines_data
 
+    # 15->16: refactoring of method _get_tax_totals to _prepare_tax_totals - _get_tax_totals was removed
     @api.model
     def _get_tax_totals(self, partner, tax_lines_data, amount_total, amount_untaxed, currency):
         result = super()._get_tax_totals(partner, tax_lines_data, amount_total, amount_untaxed, currency)
