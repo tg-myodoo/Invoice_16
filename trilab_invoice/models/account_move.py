@@ -805,15 +805,18 @@ class AccountMove(models.Model):
                 move.invoice_has_outstanding = True
 
     # 15->16: created new method to replace old _get_reconciled_info_JSON_values
-    # def _get_reconciled_info_values(self):
-    #     self.ensure_one()
-    #     payments_widget_vals = self.invoice_payments_widget['content']
-    #     if payments_widget_vals:
-    #         reconciled_vals = payments_widget_vals
-    #     else:
-    #         reconciled_vals = False
+    def _get_reconciled_info_values(self):
+        _logger.info("===========0======")
+        self.ensure_one()
+        payments_widget_vals = self.invoice_payments_widget['content']
+        if payments_widget_vals:
+            reconciled_vals = payments_widget_vals
+            _logger.info("===========1======")
+        else:
+            reconciled_vals = False
+            _logger.info("===========2======")
 
-    #     return reconciled_vals
+        return reconciled_vals
 
     # noinspection PyMethodMayBeStatic
     def _format_float(self, number, currency, env):

@@ -1,3 +1,7 @@
+v0.1.8
+====
+* models/account_move.py - created new method _get_reconciled_info_values to replace old _get_reconciled_info_JSON_values
+
 v0.1.7
 ====
 * created models/account_tax.py - refactoring of method _get_tax_totals to _prepare_tax_totals - in model AccountTax _prepare_tax_totals method was created with completely new structure
