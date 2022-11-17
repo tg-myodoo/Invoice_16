@@ -865,7 +865,7 @@
     <xpath expr="//div[@id='total']/div/table" position="after">
       <!-- 15->16: -->
       <!-- <t t-set="payments_vals" t-value="o._get_reconciled_info_JSON_values()"/> -->
-      <t t-set="payments_vals" t-value="o._get_reconciled_info_values()"/>
+      <t t-set="payments_vals" t-value="o.sudo().invoice_payments_widget and o.sudo().invoice_payments_widget['content'] or []"/>                                            
       <t t-foreach="payments_vals" t-as="payment_vals">
         <div style="text-align: right;">
           <span t-out="payment_vals['amount']"

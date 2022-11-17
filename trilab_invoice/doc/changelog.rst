@@ -1,3 +1,8 @@
+v0.1.9
+====
+* models/account_move.py - removed method _get_reconciled_info_values
+* views/account_move.xml - fixed template "report_invoice_document_with_payments"
+
 v0.1.8
 ====
 * models/account_move.py - created new method _get_reconciled_info_values to replace old _get_reconciled_info_JSON_values
