@@ -397,6 +397,7 @@ class AccountMove(models.Model):
     @api.depends('invoice_line_ids', 'invoice_line_ids.corrected_line')
     def _x_compute_corrected_invoice_line_ids(self):
         for invoice in self:
+            # invoice.corrected_invoice_line_ids = invoice.invoice_line_ids
             invoice.corrected_invoice_line_ids = invoice.invoice_line_ids.filtered_domain(
                 [('exclude_from_invoice_tab', '=', False), ('corrected_line', '=', True)]
             )
@@ -425,10 +426,11 @@ class AccountMove(models.Model):
             else:
                 invoice.correction_invoices_len = 0
 
-    @api.depends('invoice_line_ids', 'invoice_line_ids.corrected_line')
-    def _x_compute_corrected_invoice_line_ids(self):
-        for invoice in self:
-            invoice.corrected_invoice_line_ids = invoice.invoice_line_ids.filtered('corrected_line')
+    # 15->16: two definitions
+    # @api.depends('invoice_line_ids', 'invoice_line_ids.corrected_line')
+    # def _x_compute_corrected_invoice_line_ids(self):
+    #     for invoice in self:
+    #         invoice.corrected_invoice_line_ids = invoice.invoice_line_ids.filtered('corrected_line')
 
     @api.model_create_multi
     def create(self, vals_list):

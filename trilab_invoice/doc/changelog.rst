@@ -1,3 +1,7 @@
+v0.2.1
+====
+* models/account_move.py - two definitions of _x_compute_corrected_invoice_line_ids method
+
 v0.2 - Correction invoice 16
 ====
 * models/account.move.reversal.py - new 'auto_post' structure (bool->str) in reverse_moves method in AccountMoveReversal model
