@@ -1,3 +1,12 @@
+v0.2 - Correction invoice 16
+====
+* models/account.move.reversal.py - new 'auto_post' structure (bool->str) in reverse_moves method in AccountMoveReversal model
+* models/account_move_line.py - recompute functions are redundant now, so were removed from run_onchanges method
+* models/account_move.py - 2x removed redundant method _onchange_invoice_line_ids
+* models/account_move_line.py - restored methods _get_price_total_and_subtotal and _get_price_total_and_subtotal_model after odoo removed them
+* models/account_move_line.py - changes in method x_get_net_price_unit - computing the new value is no longer necessary
+
+
 v0.1.9
 ====
 * models/account_move.py - removed method _get_reconciled_info_values
@@ -44,11 +53,12 @@ v0.1.1
 * models/account_move.py - new account_id structure - 3x: account_id.user_type_id.type -> account_id.account_type & ('receivable', 'payable') -> ('asset_receivable', 'liability_payable')
 * views/account_move_views.xml - new account_id structure - 2x: ('user_type_id.type', 'not in', ('receivable', 'payable')) -> ('account_type', 'not in', ('asset_receivable', 'liability_payable'))
 
-v0.1
+v0.1 - Invoice 16
 ====
 * models/sale_advance_payment_inv.py - into m2m field 'order_ids' in model 'SaleAdvancePaymentInv' was added relation 'sale_order_ref'
 * views/account_move.xml - expression in 'bank transfer details' was chenged from <p name (...)> to <xpath (...)>
 
-v0.0
+
+v0.0 - Odoo 15 module
 ====
 * raw Odoo 15 module

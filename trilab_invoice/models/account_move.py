@@ -483,7 +483,9 @@ class AccountMove(models.Model):
                         copied.quantity = -line.quantity
                         copied.run_onchanges()
 
-                invoice.with_context(check_move_validity=False)._onchange_invoice_line_ids()
+                # 15->16: recompute functions are redundant now
+                invoice.with_context(check_move_validity=False) # ._onchange_invoice_line_ids()
+
                 # 15->16: renamed _compute_tax_totals_json method to _compute_tax_totals
                 invoice._compute_tax_totals()
                 # invoice._compute_tax_totals_json()
@@ -501,8 +503,10 @@ class AccountMove(models.Model):
                 for line in invoice.invoice_line_ids:
                     line.run_onchanges()
 
-                invoice._onchange_invoice_line_ids()
-                invoice._recompute_dynamic_lines(True)
+                # 15->16: recompute functions are redundant now
+                # invoice._onchange_invoice_line_ids()
+                # invoice._recompute_dynamic_lines(True)
+
                 # 15->16: renamed _compute_tax_totals_json method to _compute_tax_totals
                 invoice._compute_tax_totals()
                 # invoice._compute_tax_totals_json()

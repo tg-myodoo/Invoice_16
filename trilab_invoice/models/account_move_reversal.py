@@ -96,14 +96,18 @@ class AccountMoveReversal(models.TransientModel):
                     'invoice_date': move.is_invoice(include_receipts=True) and (rec.date or move.date) or False,
                     'journal_id': rec.journal_id and rec.journal_id.id or move.journal_id.id,
                     'invoice_payment_term_id': None,
-                    'auto_post': True if rec.date > fields.Date.context_today(rec) else False,
+                    # 15->16: new 'auto_post' structure
+                    'auto_post': 'at_date' if rec.date > fields.Date.context_today(rec) else 'no',
+                    # 'auto_post': True if rec.date > fields.Date.context_today(rec) else False,
                     'selected_correction_invoice': rec.selected_correction_invoice.id,
                     'invoice_user_id': move.invoice_user_id.id,
                 }
             )
 
         if rec.refund_method == 'cancel':
-            if any([vals.get('auto_post', False) for vals in default_values_list]):
+            # 15->16: new 'auto_post' structure
+            # if any([vals.get('auto_post', False) for vals in default_values_list]):
+            if any([vals.get('auto_post', 'no') for vals in default_values_list]):
                 # noinspection PyProtectedMember
                 new_moves = moves._reverse_moves(default_values_list)
             else:

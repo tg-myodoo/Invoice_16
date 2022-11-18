@@ -111,13 +111,16 @@ class AccountMoveLine(models.Model):
         return super()._get_computed_price_unit()
 
     def run_onchanges(self):
-        self._onchange_mark_recompute_taxes()
-        self._onchange_balance()
-        self._onchange_debit()
-        self._onchange_credit()
-        self._onchange_amount_currency()
-        self._onchange_price_subtotal()
-        self._onchange_currency()
+        # 15->16: recompute functions are redundant now
+
+        # self._onchange_mark_recompute_taxes()
+        # self._onchange_balance()
+        # self._onchange_debit()
+        # self._onchange_credit()
+        # self._onchange_amount_currency()
+        # self._onchange_price_subtotal()
+        # self._onchange_currency()
+        pass
 
     @api.model
     def _get_fields_onchange_balance_model(
@@ -131,8 +134,61 @@ class AccountMoveLine(models.Model):
             quantity, discount, amount_currency, move_type, currency, taxes, price_subtotal, force_computation
         )
 
+    # 15->16: computing the new value is no longer necessary
     def x_get_net_price_unit(self):
-        return self._get_price_total_and_subtotal(quantity=1)['price_subtotal']
+        self.ensure_one()
+        return self.price_subtotal
+        # return self._get_price_total_and_subtotal(quantity=1)['price_subtotal']
+
+
+    # 15->16: restored method after odoo removed it
+    def _get_price_total_and_subtotal(self, price_unit=None, quantity=None, discount=None, currency=None, product=None, partner=None, taxes=None, move_type=None):
+        self.ensure_one()
+        return self._get_price_total_and_subtotal_model(
+            price_unit=self.price_unit if price_unit is None else price_unit,
+            quantity=self.quantity if quantity is None else quantity,
+            discount=self.discount if discount is None else discount,
+            currency=self.currency_id if currency is None else currency,
+            product=self.product_id if product is None else product,
+            partner=self.partner_id if partner is None else partner,
+            taxes=self.tax_ids if taxes is None else taxes,
+            move_type=self.move_id.move_type if move_type is None else move_type,
+        )
+
+    # 15->16: restored method after odoo removed it
+    @api.model
+    def _get_price_total_and_subtotal_model(self, price_unit, quantity, discount, currency, product, partner, taxes, move_type):
+        ''' This method is used to compute 'price_total' & 'price_subtotal'.
+
+        :param price_unit:  The current price unit.
+        :param quantity:    The current quantity.
+        :param discount:    The current discount.
+        :param currency:    The line's currency.
+        :param product:     The line's product.
+        :param partner:     The line's partner.
+        :param taxes:       The applied taxes.
+        :param move_type:   The type of the move.
+        :return:            A dictionary containing 'price_subtotal' & 'price_total'.
+        '''
+        res = {}
+
+        # Compute 'price_subtotal'.
+        line_discount_price_unit = price_unit * (1 - (discount / 100.0))
+        subtotal = quantity * line_discount_price_unit
+
+        # Compute 'price_total'.
+        if taxes:
+            taxes_res = taxes._origin.with_context(force_sign=1).compute_all(line_discount_price_unit,
+                quantity=quantity, currency=currency, product=product, partner=partner, is_refund=move_type in ('out_refund', 'in_refund'))
+            res['price_subtotal'] = taxes_res['total_excluded']
+            res['price_total'] = taxes_res['total_included']
+        else:
+            res['price_total'] = res['price_subtotal'] = subtotal
+        #In case of multi currency, round before it's use for computing debit credit
+        if currency:
+            res = {k: currency.round(v) for k, v in res.items()}
+        return res
+
 
     @api.onchange("quantity", "discount", "price_unit", "tax_ids")
     def _onchange_price_subtotal(self):
