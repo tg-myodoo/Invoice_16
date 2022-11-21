@@ -621,7 +621,9 @@
                groups="account.group_show_line_subtotals_tax_included"/>
 
             <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
-              <t t-if="not line.display_type" name="account_invoice_line_accountable">
+              <!-- 15->16: new display_type field structure -->
+              <t name="account_invoice_line_accountable">
+              <!-- <t t-if="not line.display_type" name="account_invoice_line_accountable"> -->
                 <td name="account_invoice_line_name"><span t-field="line.name"/></td>
                 <td class="text-right">
                   <span t-field="line.quantity"/>
@@ -695,7 +697,9 @@
           <t t-foreach="o.corrected_invoice_line_ids.sorted(key=lambda l: (-l.sequence, -l.id), reverse=True)"
              t-as="line">
             <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
-              <t t-if="not line.display_type" name="account_invoice_line_accountable">
+              <!-- 15->16: new display_type field structure -->
+              <t name="account_invoice_line_accountable">
+              <!-- <t t-if="not line.display_type" name="account_invoice_line_accountable"> -->
                 <td name="account_invoice_line_name"><span t-field="line.name"/></td>
                 <td class="text-right">
                   <span t-field="line.x_quantity_reverse"/>
