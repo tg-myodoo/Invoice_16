@@ -1,3 +1,8 @@
+v0.2.3
+====
+* models/account_move_line.py - changes back in method x_get_net_price_unit - at this point computing the new value is still necessary
+* views/account_move.xml - fixed pdf template with t-raw -> t-out
+
 v0.2.2
 ====
 * views/account_move.xml - 2x new display_type field structure

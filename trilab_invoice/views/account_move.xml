@@ -221,24 +221,28 @@
                 <tr>
                   <td class="text-left" style="white-space: nowrap;">
                     <strong>
-                      <span t-raw="tax_group"/>
+                      <!-- 15->16: t-raw -> t-out -->
+                      <span t-out="tax_group"/>
                     </strong>
                   </td>
                   <td class="text-right" style="white-space: nowrap;">
                     <strong>
-                      <span t-raw="taxes_groups[tax_group]['base']"
+                      <!-- 15->16: t-raw -> t-out -->
+                      <span t-out="taxes_groups[tax_group]['base']"
                             t-options='{"widget": "monetary", "display_currency": order.currency_id}'/>
                     </strong>
                   </td>
                   <td class="text-right" style="white-space: nowrap;">
                     <strong>
-                      <span t-raw="taxes_groups[tax_group]['tax']"
+                      <!-- 15->16: t-raw -> t-out -->
+                      <span t-out="taxes_groups[tax_group]['tax']"
                             t-options='{"widget": "monetary", "display_currency": order.currency_id}'/>
                     </strong>
                   </td>
                   <td class="text-right" style="white-space: nowrap;">
                     <strong>
-                      <span t-raw="taxes_groups[tax_group]['total']"
+                      <!-- 15->16: t-raw -> t-out -->
+                      <span t-out="taxes_groups[tax_group]['total']"
                             t-options='{"widget": "monetary", "display_currency": order.currency_id}'/>
                     </strong>
                   </td>

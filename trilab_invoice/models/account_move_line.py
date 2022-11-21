@@ -134,11 +134,11 @@ class AccountMoveLine(models.Model):
             quantity, discount, amount_currency, move_type, currency, taxes, price_subtotal, force_computation
         )
 
-    # 15->16: computing the new value is no longer necessary
+    # 15->16: computing the new value is no longer necessary ???
     def x_get_net_price_unit(self):
         self.ensure_one()
-        return self.price_subtotal
-        # return self._get_price_total_and_subtotal(quantity=1)['price_subtotal']
+        # return self.price_subtotal # no - at this point computing is still necessary
+        return self._get_price_total_and_subtotal(quantity=1)['price_subtotal']
 
 
     # 15->16: restored method after odoo removed it
