@@ -11,6 +11,9 @@ from collections import defaultdict
 # import math
 # import re
 
+import logging
+_logger = logging.getLogger(__name__)
+
 class AccountTax(models.Model):
     _inherit = 'account.tax'
 
@@ -32,6 +35,7 @@ class AccountTax(models.Model):
         lang_env = self.env # self.with_context(lang=partner.lang).env # 15->16
         pln = self.env.company.currency_id
         tax_amount_in_pln = 0
+        x_invoice_sign = 1
 
         # ==== Compute the taxes ====
 
@@ -39,6 +43,12 @@ class AccountTax(models.Model):
         for base_line in base_lines:
             to_update_vals, tax_values_list = self._compute_taxes_for_single_line(base_line)
             to_process.append((base_line, to_update_vals, tax_values_list))
+
+            # 15->16:
+            # x_invoice_sign = base_line.get('x_invoice_sign', 1)
+            if base_line['is_refund']: x_invoice_sign = -1
+            else: x_invoice_sign = 1
+
 
         def grouping_key_generator(base_line, tax_values):
             source_tax = tax_values['tax_repartition_line'].tax_id
@@ -70,6 +80,13 @@ class AccountTax(models.Model):
                     tax_group_vals['x_balance_amount'] = balance # += balance
                     tax_amount_in_pln = balance # += balance
 
+            # 15->16:
+            for key in ('base_amount', 'tax_amount', 'x_balance_amount'):
+                if key == 'tax_amount': # 15->16: 'tax_amount' -> 'x_tax_amount'
+                    tax_group_vals['x_tax_amount'] = x_invoice_sign * abs(tax_group_vals.get(key, 0))
+                else:
+                    tax_group_vals[key] = x_invoice_sign * abs(tax_group_vals.get(key, 0))
+
             tax_group_vals_list.append(tax_group_vals)
 
         tax_group_vals_list = sorted(tax_group_vals_list, key=lambda x: (x['tax_group'].sequence, x['tax_group'].id))
@@ -96,17 +113,17 @@ class AccountTax(models.Model):
                 'tax_group_base_amount': tax_group_vals['base_amount'],
 
                 # 15->16: from _get_tax_totals
-                'x_tax_group_total_amount': tax_group_vals['tax_amount'] + tax_group_vals['base_amount'],
+                'x_tax_group_total_amount': tax_group_vals['x_tax_amount'] + tax_group_vals['base_amount'], # 15->16: 'tax_amount' -> 'x_tax_amount'
                 'x_tax_group_amount_in_pln': tax_group_vals['x_balance_amount'],
                     
-                'formatted_tax_group_amount': formatLang(self.env, tax_group_vals['tax_amount'], currency_obj=currency),
+                'formatted_tax_group_amount': formatLang(self.env, tax_group_vals['x_tax_amount'], currency_obj=currency), # 15->16: 'tax_amount' -> 'x_tax_amount'
                 'formatted_tax_group_base_amount': formatLang(self.env, tax_group_vals['base_amount'], currency_obj=currency),
 
                 # 15->16: from _get_tax_totals
                 'x_formatted_tax_group_amount_in_pln': formatLang(
                         lang_env, tax_group_vals['x_balance_amount'], currency_obj=pln),
                 'x_formatted_tax_group_total_amount': formatLang(
-                        lang_env, tax_group_vals['tax_amount'] + tax_group_vals['base_amount'], currency_obj=currency),
+                        lang_env, tax_group_vals['x_tax_amount'] + tax_group_vals['base_amount'], currency_obj=currency), # 15->16: 'tax_amount' -> 'x_tax_amount'
             })
 
         # ==== Build the final result ====
@@ -122,6 +139,7 @@ class AccountTax(models.Model):
             amount_tax += sum(x['tax_group_amount'] for x in groups_by_subtotal[subtotal_title])
 
         amount_total = amount_untaxed + amount_tax
+        # 15->16: for tests only: _logger.info(str(amount_untaxed) + " " + str(amount_tax) + " " + str(amount_total)) # =============================
 
         display_tax_base = (len(global_tax_details['tax_details']) == 1 and tax_group_vals_list[0]['base_amount'] != amount_untaxed) \
             or len(global_tax_details['tax_details']) > 1
@@ -142,3 +160,45 @@ class AccountTax(models.Model):
             'x_tax_amount_in_pln': tax_amount_in_pln,
             'x_formatted_tax_amount_in_pln': formatLang(lang_env, tax_amount_in_pln, currency_obj=pln)     
         }
+
+    # # 15->16:
+    # @api.model
+    # def _convert_to_tax_base_line_dict(
+    #         self, base_line,
+    #         partner=None, currency=None, product=None, taxes=None, price_unit=None, quantity=None,
+    #         discount=None, account=None, analytic_distribution=None, price_subtotal=None,
+    #         is_refund=False, rate=None,
+    #         handle_price_include=None,
+    #         extra_context=None,
+    #         # 15->16:
+    #         x_invoice_sign=1
+    # ):
+    #     result = super()._convert_to_tax_base_line_dict(base_line,
+    #         partner, currency, product, taxes, price_unit, quantity,
+    #         discount, account, analytic_distribution, price_subtotal,
+    #         is_refund, rate,
+    #         handle_price_include,
+    #         extra_context)
+
+    #     if not self.x_get_is_poland():
+    #         return result
+
+    #     return {
+    #         'record': base_line,
+    #         'partner': partner or self.env['res.partner'],
+    #         'currency': currency or self.env['res.currency'],
+    #         'product': product or self.env['product.product'],
+    #         'taxes': taxes or self.env['account.tax'],
+    #         'price_unit': price_unit or 0.0,
+    #         'quantity': quantity or 0.0,
+    #         'discount': discount or 0.0,
+    #         'account': account or self.env['account.account'],
+    #         'analytic_distribution': analytic_distribution,
+    #         'price_subtotal': price_subtotal or 0.0,
+    #         'is_refund': is_refund,
+    #         'rate': rate or 1.0,
+    #         'handle_price_include': handle_price_include,
+    #         'extra_context': extra_context or {},
+    #         # 15->16:
+    #         'x_invoice_sign': x_invoice_sign,
+    #     }

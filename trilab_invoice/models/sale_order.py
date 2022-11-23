@@ -47,9 +47,6 @@ class SaleOrder(models.Model):
             tax_group['total'] = tax_group['base'] + tax_group['tax']
             del tax_group['tax_percent']
 
-        _logger.info("-----=============----1----------")
-        # _logger.info(str(taxes_groups))
-
         return taxes_groups
 
     def x_get_taxes_summary(self):
@@ -57,9 +54,6 @@ class SaleOrder(models.Model):
         for group in self.get_taxes_groups().values():
             for key, value in group.items():
                 summary[key] += value
-
-        _logger.info("-----==============---2-----------")
-        # _logger.info(str(summary))
 
         return summary
 

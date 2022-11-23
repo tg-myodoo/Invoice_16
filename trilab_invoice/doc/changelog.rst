@@ -1,3 +1,7 @@
+v0.2.4
+====
+* models/account_tax.py - fixes in method _prepare_tax_totals involving variable x_invoice_sign
+
 v0.2.3
 ====
 * models/account_move_line.py - changes back in method x_get_net_price_unit - at this point computing the new value is still necessary
