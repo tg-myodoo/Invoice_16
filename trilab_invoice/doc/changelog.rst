@@ -1,3 +1,15 @@
+..
+    v0.4 - Further debuging
+    ====
+    * 
+
+v0.3 - Sale order
+====
+* models/sale_order.py - new method _nothing_to_invoice_error_message instead of old _nothing_to_invoice_error
+* models/sale_order.py - new field structure: Command
+* models/sale_order.py - new 'display_type' values
+
+
 v0.2.4
 ====
 * models/account_tax.py - fixes in method _prepare_tax_totals involving variable x_invoice_sign

@@ -2,6 +2,9 @@ from odoo import fields, models, api, _
 from odoo.exceptions import UserError, AccessError
 from itertools import groupby
 
+# 15->16: 
+from odoo.fields import Command
+
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -120,14 +123,26 @@ class SaleOrder(models.Model):
                 invoice_down_payment_vals = down_payment._x_prepare_invoice_line(sequence=invoice_item_sequence)
                 invoice_lines_vals.append(invoice_down_payment_vals)
 
-            if not any(new_line['display_type'] is False for new_line in invoice_lines_vals):
-                raise self._nothing_to_invoice_error()
+            # 15->16: new 'display_type' values
+            if not any(new_line['display_type'] in (False, 'product') for new_line in invoice_lines_vals):
+            # if not any(new_line['display_type'] is False for new_line in invoice_lines_vals):
 
-            invoice_vals['invoice_line_ids'] = [(0, 0, invoice_line_id) for invoice_line_id in invoice_lines_vals]
+                # 15->16: new method _nothing_to_invoice_error_message instead of old _nothing_to_invoice_error
+                raise UserError(self._nothing_to_invoice_error_message())
+                # raise self._nothing_to_invoice_error()
+
+            # 15->16: new field structure: Command
+            invoice_vals['invoice_line_ids'] = [Command.create(invoice_line_id) for invoice_line_id in invoice_lines_vals]
+            # invoice_vals['invoice_line_ids'] = [(0, 0, invoice_line_id) for invoice_line_id in invoice_lines_vals]
             invoice_vals_list.append(invoice_vals)
-
-        if not invoice_vals_list:
-            raise self._nothing_to_invoice_error()
+   
+        # 15->16:
+        if not invoice_vals_list and self._context.get('raise_if_nothing_to_invoice', True):
+        # if not invoice_vals_list:  
+          
+            # 15->16: new method _nothing_to_invoice_error_message instead of old _nothing_to_invoice_error
+            raise UserError(self._nothing_to_invoice_error_message())
+            # raise self._nothing_to_invoice_error()
 
         if not grouped:
             new_invoice_vals_list = []
@@ -187,11 +202,16 @@ class SaleOrder(models.Model):
 
         for move in moves:
             move.x_onchange_set_currency_rate()
+            # 15->16:
             move.message_post_with_view(
                 'mail.message_origin_link',
-                values={'self': move, 'origin': move.line_ids.mapped('sale_line_ids.order_id')},
-                subtype_id=self.env.ref('mail.mt_note').id,
-            )
+                values={'self': move, 'origin': move.line_ids.sale_line_ids.order_id},
+                subtype_id=self.env['ir.model.data']._xmlid_to_res_id('mail.mt_note'))
+            # move.message_post_with_view(
+            #     'mail.message_origin_link',
+            #     values={'self': move, 'origin': move.line_ids.mapped('sale_line_ids.order_id')},
+            #     subtype_id=self.env.ref('mail.mt_note').id,
+            # )
 
         return moves
 
