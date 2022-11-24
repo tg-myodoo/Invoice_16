@@ -1,7 +1,7 @@
-..
-    v0.4 - Further debuging
-    ====
-    * 
+v0.4 - Further debuging
+====
+* models/account_tax.py - more fixes in method _prepare_tax_totals involving variable x_invoice_sign
+
 
 v0.3 - Sale order
 ====

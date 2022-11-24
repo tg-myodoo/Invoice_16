@@ -4,7 +4,7 @@ from odoo import api, fields, models, _, Command
 from odoo.exceptions import UserError, ValidationError
 # from odoo.tools.misc import formatLang
 # from odoo.tools import get_lang, float_compare, format_date, formatLang, ormcache
-from odoo.tools import formatLang, ormcache
+from odoo.tools import formatLang, ormcache, float_is_zero
 # from odoo.tools import frozendict
 
 from collections import defaultdict
@@ -82,10 +82,8 @@ class AccountTax(models.Model):
 
             # 15->16:
             for key in ('base_amount', 'tax_amount', 'x_balance_amount'):
-                if key == 'tax_amount': # 15->16: 'tax_amount' -> 'x_tax_amount'
-                    tax_group_vals['x_tax_amount'] = x_invoice_sign * abs(tax_group_vals.get(key, 0))
-                else:
-                    tax_group_vals[key] = x_invoice_sign * abs(tax_group_vals.get(key, 0))
+                if not float_is_zero(tax_group_vals.get(key, 0), precision_rounding = self.env.company.currency_id.rounding):
+                    tax_group_vals[key] = x_invoice_sign * tax_group_vals.get(key, 0)
 
             tax_group_vals_list.append(tax_group_vals)
 
@@ -93,7 +91,9 @@ class AccountTax(models.Model):
 
         # ==== Partition the tax group values by subtotals ====
 
-        amount_untaxed = global_tax_details['base_amount_currency']
+        # 15->16:
+        amount_untaxed = x_invoice_sign * abs(global_tax_details['base_amount_currency'])
+        # amount_untaxed = global_tax_details['base_amount_currency']
         amount_tax = 0.0
 
         subtotal_order = {}
@@ -113,17 +113,17 @@ class AccountTax(models.Model):
                 'tax_group_base_amount': tax_group_vals['base_amount'],
 
                 # 15->16: from _get_tax_totals
-                'x_tax_group_total_amount': tax_group_vals['x_tax_amount'] + tax_group_vals['base_amount'], # 15->16: 'tax_amount' -> 'x_tax_amount'
+                'x_tax_group_total_amount': tax_group_vals['tax_amount'] + tax_group_vals['base_amount'],
                 'x_tax_group_amount_in_pln': tax_group_vals['x_balance_amount'],
                     
-                'formatted_tax_group_amount': formatLang(self.env, tax_group_vals['x_tax_amount'], currency_obj=currency), # 15->16: 'tax_amount' -> 'x_tax_amount'
+                'formatted_tax_group_amount': formatLang(self.env, tax_group_vals['tax_amount'], currency_obj=currency),
                 'formatted_tax_group_base_amount': formatLang(self.env, tax_group_vals['base_amount'], currency_obj=currency),
 
                 # 15->16: from _get_tax_totals
                 'x_formatted_tax_group_amount_in_pln': formatLang(
                         lang_env, tax_group_vals['x_balance_amount'], currency_obj=pln),
                 'x_formatted_tax_group_total_amount': formatLang(
-                        lang_env, tax_group_vals['x_tax_amount'] + tax_group_vals['base_amount'], currency_obj=currency), # 15->16: 'tax_amount' -> 'x_tax_amount'
+                        lang_env, tax_group_vals['tax_amount'] + tax_group_vals['base_amount'], currency_obj=currency),
             })
 
         # ==== Build the final result ====
@@ -139,7 +139,7 @@ class AccountTax(models.Model):
             amount_tax += sum(x['tax_group_amount'] for x in groups_by_subtotal[subtotal_title])
 
         amount_total = amount_untaxed + amount_tax
-        # 15->16: for tests only: _logger.info(str(amount_untaxed) + " " + str(amount_tax) + " " + str(amount_total)) # =============================
+        # 15->16: for tests only: _logger.info("Z: " + str(amount_untaxed) + " " + str(amount_tax) + " " + str(amount_total)) # =============================
 
         display_tax_base = (len(global_tax_details['tax_details']) == 1 and tax_group_vals_list[0]['base_amount'] != amount_untaxed) \
             or len(global_tax_details['tax_details']) > 1
@@ -160,45 +160,3 @@ class AccountTax(models.Model):
             'x_tax_amount_in_pln': tax_amount_in_pln,
             'x_formatted_tax_amount_in_pln': formatLang(lang_env, tax_amount_in_pln, currency_obj=pln)     
         }
-
-    # # 15->16:
-    # @api.model
-    # def _convert_to_tax_base_line_dict(
-    #         self, base_line,
-    #         partner=None, currency=None, product=None, taxes=None, price_unit=None, quantity=None,
-    #         discount=None, account=None, analytic_distribution=None, price_subtotal=None,
-    #         is_refund=False, rate=None,
-    #         handle_price_include=None,
-    #         extra_context=None,
-    #         # 15->16:
-    #         x_invoice_sign=1
-    # ):
-    #     result = super()._convert_to_tax_base_line_dict(base_line,
-    #         partner, currency, product, taxes, price_unit, quantity,
-    #         discount, account, analytic_distribution, price_subtotal,
-    #         is_refund, rate,
-    #         handle_price_include,
-    #         extra_context)
-
-    #     if not self.x_get_is_poland():
-    #         return result
-
-    #     return {
-    #         'record': base_line,
-    #         'partner': partner or self.env['res.partner'],
-    #         'currency': currency or self.env['res.currency'],
-    #         'product': product or self.env['product.product'],
-    #         'taxes': taxes or self.env['account.tax'],
-    #         'price_unit': price_unit or 0.0,
-    #         'quantity': quantity or 0.0,
-    #         'discount': discount or 0.0,
-    #         'account': account or self.env['account.account'],
-    #         'analytic_distribution': analytic_distribution,
-    #         'price_subtotal': price_subtotal or 0.0,
-    #         'is_refund': is_refund,
-    #         'rate': rate or 1.0,
-    #         'handle_price_include': handle_price_include,
-    #         'extra_context': extra_context or {},
-    #         # 15->16:
-    #         'x_invoice_sign': x_invoice_sign,
-    #     }
