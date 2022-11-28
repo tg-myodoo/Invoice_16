@@ -47,7 +47,7 @@ msgid ""
 "              <span groups=\"account.group_show_line_subtotals_tax_included\">GROSS amount</span>"
 msgstr ""
 "<span groups=\"account.group_show_line_subtotals_tax_excluded\">Kwota Netto</span>\n"
-"                <span groups=\"account.group_show_line_subtotals_tax_included\">Kwota Brutto</span>v"
+"                <span groups=\"account.group_show_line_subtotals_tax_included\">Kwota Brutto</span>"
 
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document

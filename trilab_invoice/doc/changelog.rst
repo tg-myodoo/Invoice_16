@@ -1,3 +1,7 @@
+v0.4.3
+====
+* i18n/pl.po - some changes
+
 v0.4.2
 ====
 * i18n/pl.po - translation corrections
