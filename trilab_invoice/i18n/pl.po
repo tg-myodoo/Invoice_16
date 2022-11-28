@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 16.0-20221116\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-17 08:21+0000\n"
-"PO-Revision-Date: 2022-11-23 09:53+0100\n"
+"POT-Creation-Date: 2022-11-28 14:08+0000\n"
+"PO-Revision-Date: 2022-11-28 15:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -25,29 +25,11 @@ msgstr "&amp;byk;&amp;nbsp; BIC/SWIFT:"
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.res_config_settings_view_form
 msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" groups=\"base."
-"group_multi_company\"/>"
-msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Wartości tutaj wyświetlone są typowe dla danej firmy.\" groups="
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" groups="
 "\"base.group_multi_company\"/>"
-
-#. module: trilab_invoice
-#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
-msgid ""
-"<span groups=\"account.group_show_line_subtotals_tax_excluded\">NET amount</span>\n"
-"                                <span groups=\"account.group_show_line_subtotals_tax_included\">GROSS amount</span>"
 msgstr ""
-"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Kwota Netto</span>\n"
-"                <span groups=\"account.group_show_line_subtotals_tax_included\">Kwota Brutto</span>"
-
-#. module: trilab_invoice
-#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
-msgid ""
-"<span groups=\"account.group_show_line_subtotals_tax_excluded\">NET amount</span>\n"
-"                            <span groups=\"account.group_show_line_subtotals_tax_included\">GROSS amount</span>"
-msgstr ""
-"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Kwota Netto</span>\n"
-"                            <span groups=\"account.group_show_line_subtotals_tax_included\">Kwota Brutto</span>"
+"<span class=\"fa fa-lg fa-building-o\" title=\"Wartości tutaj wyświetlone są typowe dla danej firmy."
+"\" groups=\"base.group_multi_company\"/>"
 
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
@@ -61,38 +43,20 @@ msgstr ""
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
 msgid ""
-"<span>\n"
-"                                Taxes</span>"
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">NET amount</span>\n"
+"              <span groups=\"account.group_show_line_subtotals_tax_included\">GROSS amount</span>"
 msgstr ""
-"<span>\n"
-"                                Podatki</span>"
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Kwota Netto</span>\n"
+"                <span groups=\"account.group_show_line_subtotals_tax_included\">Kwota Brutto</span>v"
 
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
 msgid ""
-"<span>\n"
-"                                Unit Price NET</span>"
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">NET amount</span>\n"
+"        <span groups=\"account.group_show_line_subtotals_tax_included\">GROSS amount</span>"
 msgstr ""
-"<span>\n"
-"                                Cena jedn. netto</span>"
-
-#. module: trilab_invoice
-#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
-msgid ""
-"<span>\n"
-"                            Taxes</span>"
-msgstr ""
-"<span>\n"
-"                            Podatki</span>"
-
-#. module: trilab_invoice
-#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
-msgid ""
-"<span>\n"
-"                            Unit Price NET</span>"
-msgstr ""
-"<span>\n"
-"                            Cena jedn. netto</span>"
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Kwota Netto</span>\n"
+"                <span groups=\"account.group_show_line_subtotals_tax_included\">Kwota Brutto</span>"
 
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
@@ -141,6 +105,16 @@ msgstr "<span>Ilość</span>"
 
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<span>Taxes</span>"
+msgstr "<span>Podatki</span>"
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "<span>Unit Price NET</span>"
+msgstr "<span>Cena jedn. netto</span>"
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
 msgid "<span>Unit price NET</span>"
 msgstr "<span>Cena jedn. netto</span>"
 
@@ -163,11 +137,6 @@ msgstr "<strong class=\"mt-4\">Podsumowanie umowy/zamówienia:</strong>"
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
 msgid "<strong class=\"mt-4\">Total after taking into account advances:</strong>"
 msgstr "<strong class=\"mt-4\">Razem po uwzględnieniu zaliczek:</strong>"
-
-#. module: trilab_invoice
-#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
-msgid "<strong><font style=\"font-size: 18px;\">Buyer:</font></strong>"
-msgstr "<strong><font style=\"font-size: 18px;\">Nabywca:</font></strong>"
 
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
@@ -230,6 +199,11 @@ msgid "<strong>VAT rate</strong>"
 msgstr "<strong>Stawka VAT</strong>"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__account_id
+msgid "Account"
+msgstr "Konto"
+
+#. module: trilab_invoice
 #: model:ir.model,name:trilab_invoice.model_account_move_reversal
 msgid "Account Move Reversal"
 msgstr "Odwrócenie zapisu"
@@ -238,6 +212,13 @@ msgstr "Odwrócenie zapisu"
 #: model:ir.model.fields,field_description:trilab_invoice.field_sale_advance_payment_inv__x_partner_bank_id
 msgid "Account Number"
 msgstr "Numer Konta"
+
+#. module: trilab_invoice
+#: model:ir.model.fields,help:trilab_invoice.field_account_move_line__account_internal_type
+msgid ""
+"Account Type is used for information purpose, to generate country-specific legal reports, and set "
+"the rules to close a fiscal year and generate opening entries."
+msgstr ""
 
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
@@ -286,30 +267,35 @@ msgid "Advance Source"
 msgstr "Źródło zaliczki"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
 #, python-format
 msgid "Advance line value is bigger than order value"
 msgstr "Suma wartości faktur zaliczkowych przekracza wartości w powiązanym zamówieniu sprzedaży"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
 #, python-format
 msgid "Advance line value must be positive"
 msgstr "Wartość pozycji zaliczkowej musi być dodatnia"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
 #, python-format
 msgid "Advance payment"
 msgstr "Zaliczka"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
 #, python-format
 msgid "Advance payment [%s]"
 msgstr "Zaliczka [%s]"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid ""
@@ -320,9 +306,32 @@ msgstr ""
 "Usuń korektę lub utwórz korektę do istniejącej korekty"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__analytic_id
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move_line__analytic_account_id
+msgid "Analytic Account"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model,name:trilab_invoice.model_account_analytic_default
+msgid "Analytic Distribution"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model,name:trilab_invoice.model_account_analytic_tag
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__analytic_tag_ids
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move_line__analytic_tag_ids
+msgid "Analytic Tags"
+msgstr ""
+
+#. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
 msgid "Bank Account Number:"
 msgstr "Konto bankowe:"
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
+msgid "Buyer:"
+msgstr "Nabywca:"
 
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
@@ -355,6 +364,12 @@ msgid "Companies"
 msgstr "Firmy"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__company_id
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_tag__company_id
+msgid "Company"
+msgstr "Przedsiębiorstwo"
+
+#. module: trilab_invoice
 #: model:ir.model,name:trilab_invoice.model_res_config_settings
 msgid "Config Settings"
 msgstr "Ustawienia konfiguracji"
@@ -382,11 +397,31 @@ msgid "Corrected Line"
 msgstr "Skorygowana Linia"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_bank_statement_line__x_corrected_amount_by_group
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__x_corrected_amount_by_group
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_payment__x_corrected_amount_by_group
+msgid "Corrected Tax amount by group"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_bank_statement_line__x_corrected_amount_summary
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__x_corrected_amount_summary
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_payment__x_corrected_amount_summary
+msgid "Corrected Tax amount summary"
+msgstr ""
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_account_move_reversal_pl
+msgid "Corrected invoice number"
+msgstr ""
+
+#. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
 msgid "Correction Invoice"
 msgstr "Faktura korekta"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #: model:ir.model.fields,field_description:trilab_invoice.field_account_bank_statement_line__correction_invoices_ids
 #: model:ir.model.fields,field_description:trilab_invoice.field_account_move__correction_invoices_ids
@@ -414,22 +449,28 @@ msgid "Create invoices PL"
 msgstr "Wystaw Fakturę PL"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__create_uid
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_tag__create_uid
 #: model:ir.model.fields,field_description:trilab_invoice.field_sale_advance_line__create_uid
 msgid "Created by"
 msgstr "Utworzona przez"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__create_date
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_tag__create_date
 #: model:ir.model.fields,field_description:trilab_invoice.field_sale_advance_line__create_date
 msgid "Created on"
 msgstr "Data utworzenia"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid "Credit Note"
 msgstr "Korekta"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid "Credit Note PL"
@@ -450,6 +491,16 @@ msgid "Currency Rate"
 msgstr "Kurs waluty"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,help:trilab_invoice.field_account_analytic_default__date_stop
+msgid "Default end date for this Analytic Account."
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,help:trilab_invoice.field_account_analytic_default__date_start
+msgid "Default start date for this Analytic Account."
+msgstr ""
+
+#. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
 msgid "Description"
 msgstr "Opis"
@@ -460,6 +511,8 @@ msgid "Disc.%"
 msgstr "Upust%"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__display_name
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_tag__display_name
 #: model:ir.model.fields,field_description:trilab_invoice.field_sale_advance_line__display_name
 msgid "Display Name"
 msgstr "Nazwa wyświetlana"
@@ -493,6 +546,16 @@ msgid "Enable Invoice Rate Change"
 msgstr "Włącz możliwość zmiany kursu faktury"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__date_stop
+msgid "End Date"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move_line__exclude_from_invoice_tab
+msgid "Exclude From Invoice Tab"
+msgstr ""
+
+#. module: trilab_invoice
 #: model:ir.model.fields,field_description:trilab_invoice.field_account_bank_statement_line__final_invoice_ids
 #: model:ir.model.fields,field_description:trilab_invoice.field_account_move__final_invoice_ids
 #: model:ir.model.fields,field_description:trilab_invoice.field_account_payment__final_invoice_ids
@@ -508,11 +571,18 @@ msgid "Final Source"
 msgstr "Źródło faktury finalnej"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,help:trilab_invoice.field_account_analytic_default__sequence
+msgid "Gives the sequence order when displaying a list of analytic distribution"
+msgstr ""
+
+#. module: trilab_invoice
 #: model:ir.model.fields,field_description:trilab_invoice.field_sale_advance_payment_inv__has_advances
 msgid "Has Advances"
 msgstr "Ma zaliczki"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__id
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_tag__id
 #: model:ir.model.fields,field_description:trilab_invoice.field_sale_advance_line__id
 msgid "ID"
 msgstr ""
@@ -523,6 +593,12 @@ msgid "In words:"
 msgstr "Słownie:"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move_line__account_internal_type
+msgid "Internal Type"
+msgstr ""
+
+#. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
 #, python-format
 msgid "Invalid advance invoice lines"
@@ -566,12 +642,19 @@ msgid "Is Downpayment"
 msgstr "Czy zaliczka"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move_line__is_rounding_line
+msgid "Is Rounding Line"
+msgstr ""
+
+#. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid "It is not possible to issue two direct corrections for one correction."
 msgstr "Nie jest możliwe utworzenie dwóch bezpośrednich korekt dla jednej korekty."
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid "It is not possible to issue two direct corrections for one invoice."
@@ -593,16 +676,22 @@ msgid "Journal Items"
 msgstr "Pozycje zapisu"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default____last_update
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_tag____last_update
 #: model:ir.model.fields,field_description:trilab_invoice.field_sale_advance_line____last_update
 msgid "Last Modified on"
 msgstr "Data ostatniej modyfikacji"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__write_uid
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_tag__write_uid
 #: model:ir.model.fields,field_description:trilab_invoice.field_sale_advance_line__write_uid
 msgid "Last Updated by"
 msgstr "Ostatnio aktualizowane przez"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__write_date
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_tag__write_date
 #: model:ir.model.fields,field_description:trilab_invoice.field_sale_advance_line__write_date
 msgid "Last Updated on"
 msgstr "Data ostatniej aktualizacji"
@@ -618,6 +707,7 @@ msgid "Lines Before"
 msgstr "Linie Przed"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
 #, python-format
 msgid "No delivered lines to invoice"
@@ -666,12 +756,14 @@ msgid "Original Total"
 msgstr "Oryginalna suma"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid "Outstanding credits"
 msgstr ""
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid "Outstanding debits"
@@ -683,12 +775,19 @@ msgid "Paid on"
 msgstr "Zapłacono"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
 #, python-format
 msgid "Percent Value cannot be greater than 100%"
 msgstr "Procent wartości nie może być większy niż 100%"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
 #, python-format
 msgid "Percent Value must be positive"
@@ -705,12 +804,19 @@ msgid "Pro Forma Invoice"
 msgstr "Faktura Pro Forma"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__product_id
+msgid "Product"
+msgstr ""
+
+#. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
 msgid "Quantity"
 msgstr "Ilość"
 
 #. module: trilab_invoice
-#: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0 code:addons/trilab_invoice/models/sale_order.py:0
+#. odoo-python
+#: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
+#: code:addons/trilab_invoice/models/sale_order.py:0
 #, python-format
 msgid "Rate %s with effective date: %s"
 msgstr "Kurs %s z daty obowiązywania: %s"
@@ -719,6 +825,16 @@ msgstr "Kurs %s z daty obowiązywania: %s"
 #: model:ir.model.fields,field_description:trilab_invoice.field_res_currency_rate__x_rate_inverted
 msgid "Rate Inverted"
 msgstr "Kurs Odwrócony"
+
+#. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.view_account_move_reversal_pl
+msgid "Reason"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_move_line__recompute_tax_line
+msgid "Recompute Tax Line"
+msgstr ""
 
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
@@ -738,15 +854,13 @@ msgid "Reverse"
 msgstr "Korekta"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move_reversal.py:0
 #, python-format
 msgid "Reverse Moves"
 msgstr "Odwróć zapisy"
 
 #. module: trilab_invoice
-#: model:ir.model.fields,field_description:trilab_invoice.field_account_bank_statement_line__x_split_payment_mechanism
-#: model:ir.model.fields,field_description:trilab_invoice.field_account_move__x_split_payment_mechanism
-#: model:ir.model.fields,field_description:trilab_invoice.field_account_payment__x_split_payment_mechanism
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
 msgid "SPLIT PAYMENT MECHANISM"
 msgstr "MECHANIZM PODZIELONEJ PŁATNOŚCI"
@@ -794,6 +908,43 @@ msgid "Section"
 msgstr "Sekcja"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,help:trilab_invoice.field_account_analytic_default__company_id
+msgid ""
+"Select a company which will use analytic account specified in analytic default (e.g. create new "
+"customer invoice or Sales order if we select this company, it will automatically take this as an "
+"analytic account)"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,help:trilab_invoice.field_account_analytic_default__partner_id
+msgid ""
+"Select a partner which will use analytic account specified in analytic default (e.g. create new "
+"customer invoice or Sales order if we select this partner, it will automatically take this as an "
+"analytic account)"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,help:trilab_invoice.field_account_analytic_default__product_id
+msgid ""
+"Select a product which will use analytic account specified in analytic default (e.g. create new "
+"customer invoice or Sales order if we select this product, it will automatically take this as an "
+"analytic account)"
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,help:trilab_invoice.field_account_analytic_default__user_id
+msgid "Select a user which will use analytic account specified in analytic default."
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,help:trilab_invoice.field_account_analytic_default__account_id
+msgid ""
+"Select an accounting account which will use analytic account specified in analytic default (e.g. "
+"create new customer invoice or Sales order if we select this account, it will automatically take "
+"this as an analytic account)"
+msgstr ""
+
+#. module: trilab_invoice
 #: model:ir.model.fields,field_description:trilab_invoice.field_account_bank_statement_line__selected_correction_invoice
 #: model:ir.model.fields,field_description:trilab_invoice.field_account_move__selected_correction_invoice
 #: model:ir.model.fields,field_description:trilab_invoice.field_account_move_reversal__selected_correction_invoice
@@ -802,10 +953,29 @@ msgid "Selected Correction Invoice"
 msgstr "Wybrana Faktura Korekta"
 
 #. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.external_layout_bold
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.external_layout_boxed
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.external_layout_standard
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.external_layout_striped
+msgid "Seller:"
+msgstr "Sprzedawca:"
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move_reversal.py:0
 #, python-format
 msgid "Single invoice only"
 msgstr "Tylko pojedyńcza faktura"
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__date_start
+msgid "Start Date"
+msgstr ""
 
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
@@ -813,9 +983,10 @@ msgid "Subtotal"
 msgstr "Podsuma"
 
 #. module: trilab_invoice
+#: model:ir.model,name:trilab_invoice.model_account_tax
 #: model:ir.model.fields,field_description:trilab_invoice.field_sale_advance_line__tax_id
 msgid "Tax"
-msgstr "Rodzaj podatku"
+msgstr "Podatek"
 
 #. module: trilab_invoice
 #: model:ir.model.fields,field_description:trilab_invoice.field_account_bank_statement_line__x_is_poland
@@ -827,40 +998,72 @@ msgid "Technical Field: Is Poland"
 msgstr "Pole Techniczne: Czy Polska"
 
 #. module: trilab_invoice
+#: model:ir.model.fields,help:trilab_invoice.field_account_move_line__exclude_from_invoice_tab
+msgid "Technical field used to exclude some lines from the invoice_line_ids tab in the form view."
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,help:trilab_invoice.field_account_move_line__recompute_tax_line
+msgid "Technical field used to know on which lines the taxes must be recomputed."
+msgstr ""
+
+#. module: trilab_invoice
+#: model:ir.model.fields,help:trilab_invoice.field_account_move_line__is_rounding_line
+msgid "Technical field used to retrieve the cash rounding line."
+msgstr ""
+
+#. module: trilab_invoice
+#. odoo-python
+#: code:addons/trilab_invoice/models/account_move.py:0
+#, python-format
+msgid "The Bill/Refund date is required to validate this document."
+msgstr ""
+
+#. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid "The field 'Customer' is required, please complete it to validate the Customer Invoice."
 msgstr "Pole 'Klient' jest wymagane, uzupełnij je by móc zwalidować fakturę dla klienta."
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid "The field 'Vendor' is required, please complete it to validate the Vendor Bill."
 msgstr "Pole 'Dostawca' jest wymagane, uzupełnij je by móc zwalidować fakturę dostawcy."
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
 #, python-format
 msgid ""
-"The product used to invoice a down payment should be of type 'Service'. lease use another product or update this "
-"product."
-msgstr "Produkt przypisany do zaliczki musi być typu 'Usługa'. Proszę użyć innego produktu lub zmodyfikować obecny."
+"The product used to invoice a down payment should be of type 'Service'. lease use another product "
+"or update this product."
+msgstr ""
+"Produkt przypisany do zaliczki musi być typu 'Usługa'. Proszę użyć innego produktu lub zmodyfikować "
+"obecny."
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
 #, python-format
 msgid ""
-"The product used to invoice a down payment should have an invoice policy set to \"Ordered quantities\". Please "
-"update your deposit product to be able to create a deposit invoice."
-msgstr "Produkt przypisany do zaliczki musi być typu 'Usługa'. Proszę użyć innego produktu lub zmodyfikować obecny."
+"The product used to invoice a down payment should have an invoice policy set to \"Ordered quantities"
+"\". Please update your deposit product to be able to create a deposit invoice."
+msgstr ""
+"Produkt przypisany do zaliczki musi być typu 'Usługa'. Proszę użyć innego produktu lub zmodyfikować "
+"obecny."
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid "This move is configured to be auto-posted on %s"
 msgstr "Ten zapis jest skonfigurowany aby był automatycznie zapisywany na %s"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid "This move will be posted at the accounting date: %(date)s"
@@ -883,7 +1086,9 @@ msgid "Type"
 msgstr "Typ"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
+#: code:addons/trilab_invoice/models/account_tax.py:0
 #, python-format
 msgid "Untaxed Amount"
 msgstr "Kwota nieopodatkowana"
@@ -892,6 +1097,11 @@ msgstr "Kwota nieopodatkowana"
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
 msgid "UoM"
 msgstr "JM"
+
+#. module: trilab_invoice
+#: model:ir.model.fields,field_description:trilab_invoice.field_account_analytic_default__user_id
+msgid "User"
+msgstr ""
 
 #. module: trilab_invoice
 #: model:ir.model.fields,field_description:trilab_invoice.field_sale_advance_line__percent
@@ -909,6 +1119,7 @@ msgid "Value [NET]"
 msgstr "Kwota netto"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/sale_order.py:0
 #, python-format
 msgid "Value in advance invoices is greater than order value"
@@ -925,6 +1136,7 @@ msgid "Vendor Correction Invoice"
 msgstr "Faktura Korekty Dostawcy"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid "Vendor invoice number is required"
@@ -996,12 +1208,14 @@ msgid "X Total in Currency"
 msgstr "Razem w walucie"
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid "You don't have the access rights to post an invoice."
 msgstr "Nie masz wystarczających uprawnień aby zaksięgować fakturę."
 
 #. module: trilab_invoice
+#. odoo-python
 #: code:addons/trilab_invoice/models/account_move.py:0
 #, python-format
 msgid "You need to add a line before posting."

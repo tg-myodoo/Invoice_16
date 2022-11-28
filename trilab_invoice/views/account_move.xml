@@ -222,7 +222,7 @@
                   <strong>NET amount</strong>
                 </td>
                 <td class="text-right">
-                  <strong>VAT amount 1</strong>
+                  <strong>VAT amount</strong>
                 </td>
                 <td class="text-right">
                   <strong>GROSS amount</strong>
@@ -335,7 +335,7 @@
                   <strong>NET amount</strong>
                 </td>
                 <td class="text-right">
-                  <strong>VAT amount 2</strong>
+                  <strong>VAT amount</strong>
                 </td>
                 <td t-if="vat_to_pln">
                   <strong>VAT amount in PLN</strong>
@@ -418,7 +418,7 @@
                   <strong>NET amount</strong>
                 </td>
                 <td class="text-right">
-                  <strong>VAT amount 3</strong>
+                  <strong>VAT amount</strong>
                 </td>
                 <td t-if="vat_to_pln" class="text-right">
                   <strong>VAT amount in PLN</strong>
@@ -466,7 +466,7 @@
                   <strong>NET amount</strong>
                 </td>
                 <td class="text-right">
-                  <strong>VAT amount 4</strong>
+                  <strong>VAT amount</strong>
                 </td>
                 <td t-if="vat_to_pln" class="text-right">
                   <strong>VAT amount in PLN</strong>
@@ -529,7 +529,7 @@
                   <strong>NET amount</strong>
                 </td>
                 <td class="text-right">
-                  <strong>VAT amount 5</strong>
+                  <strong>VAT amount</strong>
                 </td>
                 <td t-if="vat_to_pln" class="text-right">
                   <strong>VAT amount in PLN</strong>
@@ -776,7 +776,7 @@
                 <strong>NET amount</strong>
               </td>
               <td class="text-right">
-                <strong>VAT amount 6</strong>
+                <strong>VAT amount</strong>
               </td>
               <td t-if="vat_to_pln" class="text-right">
                 <strong>VAT amount in PLN</strong>

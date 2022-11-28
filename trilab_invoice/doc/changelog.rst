@@ -1,3 +1,8 @@
+v0.4.2
+====
+* i18n/pl.po - translation corrections
+* created i18n/trilab_invoice.pot
+
 v0.4.1
 ====
 * views/account_move.xml - changes in header structure regarding buyer address
