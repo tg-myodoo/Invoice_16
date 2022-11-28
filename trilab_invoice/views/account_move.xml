@@ -4,9 +4,20 @@
             name="trilab_report_invoice_document" primary="True">
 
     <!-- add word buyer above customer block -->
-    <xpath expr="//address/../*[1]" position="before">
-      <strong t-if="o.move_type in ['out_invoice', 'out_refund']">Buyer:</strong>
+    <!-- 15->16: changes in header structure -->
+    <xpath expr="//div[@name='address_not_same_as_shipping']//address"  position="before">
+      <strong t-if="o.move_type in ['out_invoice', 'out_refund']">Buyer:</strong> 
+      <!-- <xpath expr="//address/../*[1]" position="before"> -->
     </xpath>
+
+    <xpath expr="//div[@name='address_same_as_shipping']//address"  position="before">
+      <strong t-if="o.move_type in ['out_invoice', 'out_refund']">Buyer:</strong> 
+    </xpath>
+
+    <xpath expr="//div[@name='no_shipping']//address"  position="before">
+      <strong t-if="o.move_type in ['out_invoice', 'out_refund']">Buyer:</strong> 
+    </xpath>
+
 
     <!-- add "NET" to the label -->
     <xpath expr="//table[@name='invoice_line_table']//th[@name='th_priceunit']/span" position="replace">
@@ -211,7 +222,7 @@
                   <strong>NET amount</strong>
                 </td>
                 <td class="text-right">
-                  <strong>VAT amount</strong>
+                  <strong>VAT amount 1</strong>
                 </td>
                 <td class="text-right">
                   <strong>GROSS amount</strong>
@@ -324,7 +335,7 @@
                   <strong>NET amount</strong>
                 </td>
                 <td class="text-right">
-                  <strong>VAT amount</strong>
+                  <strong>VAT amount 2</strong>
                 </td>
                 <td t-if="vat_to_pln">
                   <strong>VAT amount in PLN</strong>
@@ -407,7 +418,7 @@
                   <strong>NET amount</strong>
                 </td>
                 <td class="text-right">
-                  <strong>VAT amount</strong>
+                  <strong>VAT amount 3</strong>
                 </td>
                 <td t-if="vat_to_pln" class="text-right">
                   <strong>VAT amount in PLN</strong>
@@ -455,7 +466,7 @@
                   <strong>NET amount</strong>
                 </td>
                 <td class="text-right">
-                  <strong>VAT amount</strong>
+                  <strong>VAT amount 4</strong>
                 </td>
                 <td t-if="vat_to_pln" class="text-right">
                   <strong>VAT amount in PLN</strong>
@@ -518,7 +529,7 @@
                   <strong>NET amount</strong>
                 </td>
                 <td class="text-right">
-                  <strong>VAT amount</strong>
+                  <strong>VAT amount 5</strong>
                 </td>
                 <td t-if="vat_to_pln" class="text-right">
                   <strong>VAT amount in PLN</strong>
@@ -765,7 +776,7 @@
                 <strong>NET amount</strong>
               </td>
               <td class="text-right">
-                <strong>VAT amount</strong>
+                <strong>VAT amount 6</strong>
               </td>
               <td t-if="vat_to_pln" class="text-right">
                 <strong>VAT amount in PLN</strong>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!-- 15->16: changes in header structure -->
+<!-- 15->16: added word seller before company address -->
+  <template id="external_layout_standard" inherit_id="web.external_layout_standard"
+            name="trilab_external_layout_standard">
+    <xpath expr="//div[@name='company_address']/span" position="before">
+      <br />
+      <t t-if="o != None">
+        <strong t-if="o.move_type in ['out_invoice', 'out_refund']">Seller:</strong> 
+      </t>
+    </xpath>
+  </template>
+
+  <template id="external_layout_boxed" inherit_id="web.external_layout_boxed"
+            name="trilab_external_layout_boxed">
+    <xpath expr="//div[@name='company_address']/span" position="before">
+      <t t-if="o != None">
+        <strong t-if="o.move_type in ['out_invoice', 'out_refund']">Seller:</strong> 
+      </t>
+    </xpath>
+  </template>
+
+  <template id="external_layout_bold" inherit_id="web.external_layout_bold"
+            name="trilab_external_layout_bold">
+    <xpath expr="//div[@name='company_address']/span" position="before">
+      <t t-if="o != None">
+        <strong t-if="o.move_type in ['out_invoice', 'out_refund']" 
+                t-att-style="'color: %s;' % o.company_id.secondary_color">Seller:</strong> 
+      </t>
+    </xpath>
+  </template>
+
+  <template id="external_layout_striped" inherit_id="web.external_layout_striped"
+            name="trilab_external_layout_striped">
+    <xpath expr="//div[@class='float-start company_address']/span" position="before">
+      <t t-if="o != None">
+        <strong t-if="o.move_type in ['out_invoice', 'out_refund']" 
+                t-att-style="'color: %s;' % o.company_id.secondary_color">Seller:</strong> 
+      </t>
+    </xpath>
+  </template>
+
+</odoo>

@@ -1,3 +1,8 @@
+v0.4.1
+====
+* views/account_move.xml - changes in header structure regarding buyer address
+* created views/raport_templates.xml - created new templates for header because of changes in header structure regarding seller address
+
 v0.4 - Further debuging
 ====
 * models/account_tax.py - more fixes in method _prepare_tax_totals involving variable x_invoice_sign

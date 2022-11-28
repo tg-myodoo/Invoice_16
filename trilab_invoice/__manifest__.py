@@ -23,6 +23,7 @@
         'views/sale_views.xml',
         'views/res_currency_views.xml',
         'views/res_config_settings_views.xml',
+        'views/report_templates.xml',
     ],
     'images': [
         'static/description/banner.png',
