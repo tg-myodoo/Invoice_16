@@ -1,3 +1,8 @@
+v0.4.4
+====
+* views/account_move.xml - restoring odoo-like styles in documents
+* views/raport_templates.xml - fixed issue with header in Order/Quotation documents
+
 v0.4.3
 ====
 * i18n/pl.po - some changes

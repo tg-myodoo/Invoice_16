@@ -29,11 +29,12 @@
         'static/description/banner.png',
         'static/description/invoice.png',
     ],
-    'assets': {
-        'web.report_assets_common': [
-            'trilab_invoice/static/src/scss/layout_boxed.scss',
-        ],
-    },
+    # 15->16: restoring odoo-like styles in documents
+    # 'assets': {
+    #     'web.report_assets_common': [
+    #         'trilab_invoice/static/src/scss/layout_boxed.scss',
+    #     ],
+    # },
     'installable': True,
     'application': True,
     'auto_install': False,
