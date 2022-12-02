@@ -24,6 +24,8 @@
         'views/res_currency_views.xml',
         'views/res_config_settings_views.xml',
         'views/report_templates.xml',
+        # 15->16: duplicate
+        'views/report_duplicate.xml',
     ],
     'images': [
         'static/description/banner.png',

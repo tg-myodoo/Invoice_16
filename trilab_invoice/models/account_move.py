@@ -2,6 +2,7 @@ import json
 import logging
 from collections import defaultdict
 from datetime import timedelta
+from datetime import datetime
 
 # noinspection PyProtectedMember
 from odoo import api, fields, models, _
@@ -1190,3 +1191,9 @@ class AccountMove(models.Model):
                 move.bank_partner_id = move.company_id.partner_id
             else:
                 move.bank_partner_id = move.commercial_partner_id
+
+
+# ======================================== duplicate ==========
+
+    def duplicate_time(self):
+        return datetime.now().strftime("%d.%m.%Y")

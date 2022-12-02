@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0-20221116\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 14:08+0000\n"
-"PO-Revision-Date: 2022-11-28 15:15+0100\n"
+"POT-Creation-Date: 2022-12-02 09:55+0000\n"
+"PO-Revision-Date: 2022-12-02 11:33+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,13 +23,18 @@ msgid "&amp;bull;&amp;nbsp;BIC/SWIFT:"
 msgstr "&amp;byk;&amp;nbsp; BIC/SWIFT:"
 
 #. module: trilab_invoice
+#: model:ir.actions.report,print_report_name:trilab_invoice.action_report_invoice_duplicate
+msgid "(object.name)"
+msgstr ""
+
+#. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.res_config_settings_view_form
 msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" groups="
 "\"base.group_multi_company\"/>"
 msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Wartości tutaj wyświetlone są typowe dla danej firmy."
-"\" groups=\"base.group_multi_company\"/>"
+"<span class=\"fa fa-lg fa-building-o\" title=\"Wartości tutaj wyświetlone są typowe dla danej "
+"firmy.\" groups=\"base.group_multi_company\"/>"
 
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
@@ -418,7 +423,7 @@ msgstr ""
 #. module: trilab_invoice
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
 msgid "Correction Invoice"
-msgstr "Faktura korekta"
+msgstr "Faktura korygująca"
 
 #. module: trilab_invoice
 #. odoo-python
@@ -429,7 +434,7 @@ msgstr "Faktura korekta"
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.view_move_form_inherit
 #, python-format
 msgid "Correction Invoices"
-msgstr "Faktura korekta"
+msgstr "Faktury korygujące"
 
 #. module: trilab_invoice
 #: model:ir.model.fields,field_description:trilab_invoice.field_account_bank_statement_line__correction_invoices_len
@@ -491,6 +496,11 @@ msgid "Currency Rate"
 msgstr "Kurs waluty"
 
 #. module: trilab_invoice
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_duplicate_document
+msgid "DUPLICATE"
+msgstr "DUPLIKAT"
+
+#. module: trilab_invoice
 #: model:ir.model.fields,help:trilab_invoice.field_account_analytic_default__date_stop
 msgid "Default end date for this Analytic Account."
 msgstr ""
@@ -535,9 +545,9 @@ msgid "Duplicate Date"
 msgstr "Data duplikatu"
 
 #. module: trilab_invoice
-#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
-msgid "Duplicate on"
-msgstr "Duplikat z dnia"
+#: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_duplicate_document
+msgid "Duplicate date:"
+msgstr "Data duplikatu"
 
 #. module: trilab_invoice
 #: model:ir.model.fields,field_description:trilab_invoice.field_res_company__x_enable_invoice_rate_change
@@ -608,6 +618,11 @@ msgstr "Niepoprawne pozycje zaliczki"
 #: model_terms:ir.ui.view,arch_db:trilab_invoice.report_invoice_document
 msgid "Invoice"
 msgstr "Faktura"
+
+#. module: trilab_invoice
+#: model:ir.actions.report,name:trilab_invoice.action_report_invoice_duplicate
+msgid "Invoice Duplicate"
+msgstr "Duplikat faktury"
 
 #. module: trilab_invoice
 #: model:ir.model.fields,field_description:trilab_invoice.field_sale_advance_payment_inv__invoice_lines
@@ -1037,23 +1052,37 @@ msgstr "Pole 'Dostawca' jest wymagane, uzupełnij je by móc zwalidować faktur�
 #. odoo-python
 #: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
 #, python-format
-msgid ""
-"The product used to invoice a down payment should be of type 'Service'. lease use another product "
-"or update this product."
+msgid "The fixed value of t he down payment amount must be positive."
 msgstr ""
-"Produkt przypisany do zaliczki musi być typu 'Usługa'. Proszę użyć innego produktu lub zmodyfikować "
-"obecny."
+
+#. module: trilab_invoice
+#. odoo-python
+#: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
+#, python-format
+msgid "The percentage value of the down payment amount must be positive."
+msgstr ""
 
 #. module: trilab_invoice
 #. odoo-python
 #: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
 #, python-format
 msgid ""
-"The product used to invoice a down payment should have an invoice policy set to \"Ordered quantities"
-"\". Please update your deposit product to be able to create a deposit invoice."
+"The product used to invoice a down payment should be of type 'Service'. lease use another product "
+"or update this product."
 msgstr ""
-"Produkt przypisany do zaliczki musi być typu 'Usługa'. Proszę użyć innego produktu lub zmodyfikować "
-"obecny."
+"Produkt przypisany do zaliczki musi być typu 'Usługa'. Proszę użyć innego produktu lub "
+"zmodyfikować obecny."
+
+#. module: trilab_invoice
+#. odoo-python
+#: code:addons/trilab_invoice/models/sale_advance_payment_inv.py:0
+#, python-format
+msgid ""
+"The product used to invoice a down payment should have an invoice policy set to \"Ordered "
+"quantities\". Please update your deposit product to be able to create a deposit invoice."
+msgstr ""
+"Produkt przypisany do zaliczki musi być typu 'Usługa'. Proszę użyć innego produktu lub "
+"zmodyfikować obecny."
 
 #. module: trilab_invoice
 #. odoo-python

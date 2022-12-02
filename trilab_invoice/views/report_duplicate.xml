@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- ======================================== duplicate ========== -->
+
+<odoo>
+  <data>
+
+    <!-- duplicate button-->
+        <record id="action_report_invoice_duplicate" model="ir.actions.report">
+            <field name="name">Invoice Duplicate</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">trilab_invoice.report_invoice_duplicate</field>
+            <field name="report_file">trilab_invoice.report_invoice_duplicate</field>
+            <field name="print_report_name">(object.name)</field>
+            <field name="binding_model_id" ref="model_account_move"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    <!-- duplicate title and date-->
+    <template id="report_invoice_duplicate_document" inherit_id="trilab_invoice.report_invoice_document" primary="True">
+        <xpath expr="//h2" position="after"><!--replace-->
+            <!-- <h2>
+                <span>Duplicate</span>
+                <span t-if="o.move_type == 'out_refund'">refund</span>
+                <span t-if="o.move_type == 'out_invoice'">invoice</span>
+                <span t-field="o.name"/>
+            </h2> -->
+            <h3 style="text-align: left; font-size: 30px; margin-top: 0"> <!--center-->
+                <span t-att-style="'color: %s;' % o.company_id.primary_color">DUPLICATE</span>
+            </h3>
+            <div class="col-auto mw-100 mb-2">
+                <strong t-att-style="'color: %s;' % o.company_id.secondary_color">Duplicate date:</strong>
+                <p t-esc="o.duplicate_time()"/>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="report_invoice_duplicate">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="trilab_invoice.report_invoice_duplicate_document"
+                   t-lang="o.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+  </data>
+</odoo>

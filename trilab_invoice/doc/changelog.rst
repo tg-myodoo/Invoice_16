@@ -1,3 +1,12 @@
+v0.4.5
+====
+* changes in the way of generating duplicate of documents:
+    * views/account_move_views.xml
+    * models/account_move.py
+    * created views/report_duplicate.xml 
+    * i18n/pl.po 
+* many minor changes
+
 v0.4.4
 ====
 * views/account_move.xml - restoring odoo-like styles in documents

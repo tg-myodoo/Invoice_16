@@ -50,8 +50,10 @@
       <attribute name="t-if" separator=" and " add="not o.advance_source_id"/>
     </xpath>
 
-    <h2 position="replace">
-      <h2>
+    <!-- 15->16: -->
+    <xpath expr="//h2" position="replace">
+    <!-- <h2 position="replace"> -->
+      <h2 style="text-align: left; font-size: 20px;"><!-- 15->16: -->
         <t t-if="not o.advance_source_id and not o.advance_invoices_ids">
           <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">Invoice</span>
           <span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>
@@ -70,12 +72,16 @@
         <span t-if="o.move_type == 'out_refund'">Correction Invoice</span>
         <span t-if="o.move_type == 'in_refund'">Vendor Correction Invoice</span>
         <span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+        <!--<span t-if="o.name != '/'"> no. </span>  15->16: ??? -->
         <span t-if="o.name != '/'" t-field="o.name"/>
+        <!-- 15->16: 
         <t t-if="o.x_invoice_duplicate_date">
           <br/><span class="text-small">Duplicate on <span t-out="o.x_invoice_duplicate_date"/></span>
         </t>
+        -->
       </h2>
-    </h2>
+    <!-- </h2> -->
+    </xpath>
 
     <div name="reference" position="attributes">
       <attribute name="t-if">not o.move_type.endswith('_refund') and o.ref</attribute>"

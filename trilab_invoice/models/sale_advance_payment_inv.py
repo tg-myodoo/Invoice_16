@@ -1,6 +1,10 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
 
+import logging
+
+_logger = logging.getLogger(__name__)
+
 
 class SaleAdvancePaymentInv(models.TransientModel):
     _inherit = 'sale.advance.payment.inv'
@@ -295,6 +299,17 @@ class SaleAdvancePaymentInv(models.TransientModel):
             return sale_orders.action_view_invoice()
 
         return {'type': 'ir.actions.act_window_close'}
+
+
+# 15->16: for tests only
+    @api.constrains('advance_payment_method', 'amount', 'fixed_amount')
+    def _check_amount_is_positive(self):
+        for wizard in self:
+            _logger.info("=================================" + str(self.amount))
+            if wizard.advance_payment_method == 'percentage' and wizard.amount <= 0.00:
+                raise UserError(_('The percentage value of the down payment amount must be positive.'))
+            elif wizard.advance_payment_method == 'fixed' and wizard.fixed_amount <= 0.00:
+                raise UserError(_('The fixed value of t he down payment amount must be positive.'))
 
 
 class SaleAdvanceLine(models.TransientModel):
