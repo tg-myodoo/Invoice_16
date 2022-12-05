@@ -1195,5 +1195,15 @@ class AccountMove(models.Model):
 
 # ======================================== duplicate ==========
 
-    def duplicate_time(self):
+    def duplicate_time_for_document(self):
         return datetime.now().strftime("%d.%m.%Y")
+
+    def duplicate_time_for_file_name(self):
+        return datetime.now().strftime("%Y_%m_%d")
+
+    def create_note_about_duplicate(self):
+        odoobot = self.env.ref('base.partner_root')
+        self.message_post(body=(_("Duplicate has been created on %s (server time).") % (datetime.now().strftime("%d.%m.%Y %H:%M"))),
+                                    message_type='comment',
+                                    subtype_xmlid='mail.mt_note')#,
+                                    # author_id=odoobot.id)

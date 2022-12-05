@@ -1,3 +1,8 @@
+v0.4.6
+====
+* some changes in duplicates layout
+* added saving duplicates history into chatter
+
 v0.4.5
 ====
 * changes in the way of generating duplicate of documents:

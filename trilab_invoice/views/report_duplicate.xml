@@ -12,7 +12,8 @@
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">trilab_invoice.report_invoice_duplicate</field>
             <field name="report_file">trilab_invoice.report_invoice_duplicate</field>
-            <field name="print_report_name">(object.name)</field>
+            <field name="print_report_name">'Duplicate_%s-%s' % (object.duplicate_time_for_file_name(), object.name)</field>
+            <field name="attachment">'Duplicate_%s-%s.pdf' % (object.duplicate_time_for_file_name(), (object.name).replace('/','_'))</field>
             <field name="binding_model_id" ref="model_account_move"/>
             <field name="binding_type">report</field>
         </record>
@@ -29,10 +30,20 @@
             <h3 style="text-align: left; font-size: 30px; margin-top: 0"> <!--center-->
                 <span t-att-style="'color: %s;' % o.company_id.primary_color">DUPLICATE</span>
             </h3>
-            <div class="col-auto mw-100 mb-2">
-                <strong t-att-style="'color: %s;' % o.company_id.secondary_color">Duplicate date:</strong>
-                <p t-esc="o.duplicate_time()"/>
-            </div>
+            <t t-if="o.move_type.endswith('_refund')">
+                <div class="col-auto mw-100 mb-2">
+                    <strong t-att-style="'color: %s;' % o.company_id.secondary_color">Duplicate date:</strong>
+                    <p t-esc="o.duplicate_time_for_document()"/>
+                </div>
+            </t>
+        </xpath>
+        <xpath expr="//div[@name='invoice_date']" position="before">
+            <t t-if="o.move_type == 'out_invoice'">
+                <div class="col-auto mw-100 mb-2">
+                    <strong t-att-style="'color: %s;' % o.company_id.secondary_color">Duplicate date:</strong>
+                    <p t-esc="o.duplicate_time_for_document()"/>
+                </div>
+            </t>
         </xpath>
     </template>
 
@@ -41,6 +52,7 @@
             <t t-foreach="docs" t-as="o">
                 <t t-call="trilab_invoice.report_invoice_duplicate_document"
                    t-lang="o.partner_id.lang"/>
+                <t t-esc="o.create_note_about_duplicate()"/>
             </t>
         </t>
     </template>
